@@ -222,6 +222,8 @@ module ActiveStorage
 
       type, subtype = content_type.split('/')
       case type
+      when 'font'
+        'raw'
       when 'video', 'audio'
         'video'
       when 'text'
