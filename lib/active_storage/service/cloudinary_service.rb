@@ -39,6 +39,8 @@ module ActiveStorage
         begin
           extra_headers = checksum.nil? ? {} : {Headers::CONTENT_MD5 => checksum}
           options = @options.merge(options)
+          options[:format] = ext_for_file(key) if resource_type(io, key) == "raw"
+
           Cloudinary::Uploader.upload(
             io,
             public_id: public_id_internal(key),
