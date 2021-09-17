@@ -222,6 +222,8 @@ module ActiveStorage
     def content_type_to_resource_type(content_type)
       return 'image' if content_type.nil?
 
+      return 'raw' if content_type == 'image/svg+xml'
+
       type, subtype = content_type.split('/')
       case type
       when 'font'
